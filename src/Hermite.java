@@ -4,8 +4,9 @@ public class Hermite {
 
 	private static int iloscElementow;
 	private static int iloscElementowX;
-	private static float[] rowX = new float[10];
-	private static float[] rowY = new float[10];
+	private static int parzystaIloscElementow;
+	private static float[] rowX = new float[20];
+	private static float[] rowY = new float[20];
 	public static void pobierzDane(float[] x, float[] y, float[] yP) {
 		
 		Scanner in = new Scanner(System.in);
@@ -30,7 +31,6 @@ public class Hermite {
 		}
 
 		// Wypelnianie tablicy yP
-		int parzystaIloscElementow;
 		if(!(iloscElementowX%2 == 0)){
 			parzystaIloscElementow  = (iloscElementowX / 2)+1;
 		}else{
@@ -131,7 +131,7 @@ public class Hermite {
 	public static void budujTabele(float[] x, float[] y, float[] yP){ 
 		
 		int licznik= 0;
-		for (int i = 0; i < iloscElementowX; i++) {
+		for (int i = 0; i < iloscElementowX+parzystaIloscElementow; i++) {
 			
 			System.out.print(x[i]);
 			System.out.println("  " + y[i]);
