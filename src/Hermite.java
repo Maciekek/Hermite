@@ -7,13 +7,14 @@ public class Hermite {
 	private static int parzystaIloscElementow;
 	private static float[] rowX = new float[20];
 	private static float[] rowY = new float[20];
+	private static float[] wspolczynnikWielomianu = new float[20];
 	public static void pobierzDane(float[] x, float[] y, float[] yP) {
 		
 		Scanner in = new Scanner(System.in);
 		System.out.println("Witaj uzytkowniku!");
 		System.out.println("Podaja ilosc elementow");
 		iloscElementowX = in.nextInt();
-		iloscElementow = iloscElementowX+2;
+		
 		// Wypelnianie tablicy x
 		for (int i = 0; i < iloscElementowX; i++) {
 
@@ -45,6 +46,7 @@ public class Hermite {
 				yP[2 * i] = in.nextInt();
 			}
 		}
+		iloscElementow = iloscElementowX+parzystaIloscElementow;
 		in.close();
 	}
 
@@ -96,7 +98,7 @@ public class Hermite {
 		while(licznikPrzejsc != iloscElementowX+1) {
 			
 			
-			for (int i = 0; i< iloscElementow-1; i++){
+			for (int i = 0; i< iloscElementowX+parzystaIloscElementow -1; i++){
 				
 				float licznik = rowY[i+1]-rowY[i];
 				float mianownik = rowX[i+1+licznikPrzejsc]-rowX[i];
@@ -111,14 +113,18 @@ public class Hermite {
 					wynik = licznik / mianownik;
 					rowY[i]=wynik;
 				}
+				
+				
 //				System.out.println("----");
 //				System.out.println(wynik + "    i    " + i);
 				
 			}
 			
 			System.out.println();
-			for (int i = 0; i< iloscElementow-1; i++)
+			for (int i = 0; i< iloscElementow-1; i++){
+				wspolczynnikWielomianu[i] = rowY[0];
 				System.out.print(rowY[i] + " ");
+			}
 			System.out.println();
 			licznikPrzejsc++;
 			iloscElementow--;
@@ -133,8 +139,8 @@ public class Hermite {
 		int licznik= 0;
 		for (int i = 0; i < iloscElementowX+parzystaIloscElementow; i++) {
 			
-			System.out.print(x[i]);
-			System.out.println("  " + y[i]);
+//			System.out.print(x[i]);
+//			System.out.println("  " + y[i]);
 			if (i%2 == 0) {
 				rowX[licznik] = x[i];
 				rowY[licznik] = y[i];
@@ -160,6 +166,42 @@ public class Hermite {
 		}
 	}
 	
+	
+	private static void zbudujWielomian(float[] wspolczynnikWielomianu) {
+		int licznik = 0;
+		int potega = 1;
+		String wynik = null;
+		System.out.println(iloscElementow);
+		for (int i=4; i >= 0 ; i--) {
+			if (licznik == 0 ){
+				wynik = Float.toString(wspolczynnikWielomianu[i]) + "+";
+				System.out.println(wynik);
+				licznik++;
+				
+			}
+			else if(licznik == 1) {
+				wynik+=  Float.toString(wspolczynnikWielomianu[i])+"x" + "+";
+				licznik++;
+				System.out.println(wynik);
+			}
+			else if(licznik == 2) {
+				wynik+=  Float.toString(wspolczynnikWielomianu[i])+"x^2" + "+";
+				licznik++;
+				System.out.println(wynik);
+			}
+			else if(licznik >= 3) {
+				wynik +=  Float.toString(wspolczynnikWielomianu[i]) + "x^2"+ "(x-1)^" + potega + "+";
+				System.out.println(wynik);
+				potega++;
+				licznik++;
+			}
+			
+			
+		}
+		System.out.println(wynik);
+	}
+	
+	
 	public static void  main(String[] arg) {
 		
 		float[] x = new float[10];
@@ -168,8 +210,14 @@ public class Hermite {
 		pobierzDane(x, y, yP);
 		budujTabele(x, y, yP);
 		pokazKolumnyDoAlgorytmu(rowX, rowY);		
-	
+		
 		wylicz(yP);
+		System.out.println("Wspolczynniki wielomianu");
+		for (int i = iloscElementowX+parzystaIloscElementow-1; i >= 0; i--) 
+			System.out.println(wspolczynnikWielomianu[i]);
+		zbudujWielomian(wspolczynnikWielomianu);
 	}
+
+	
 
 }
