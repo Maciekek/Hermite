@@ -226,6 +226,11 @@ public class Hermite {
 		for (float x : wynikPoSumowaniu) {
 			System.out.print(x + ", ");
 		}
+		System.out.println("\n Wielomian");
+		for (int i = 0; i < Wx.length; i++) {
+			System.out.print(wynikPoSumowaniu[i] + "x^" + i + " + ");
+		}
+
 	}
 
 	private static void mnozenie(float[] Wx, float[] Vx) {
