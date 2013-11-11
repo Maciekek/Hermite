@@ -279,7 +279,7 @@ public class Hermite {
 	public static void drukujWynik(float[] wynikPoSumowaniu){
 		
 		System.out.println();
-		System.out.println("Wynik po ca³kowaniu :");
+		System.out.println("Wynik po calkowaniu :");
 		for(int i = 0; i<wynikPoSumowaniu.length; i++){
 			
 			System.out.print(wynikPoSumowaniu[i] + "x^" + (i+1) + " + ");
