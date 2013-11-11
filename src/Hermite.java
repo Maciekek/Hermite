@@ -7,9 +7,6 @@ public class Hermite {
 	private static int parzystaIloscElementow;
 	private static float[] rowX = new float[20];
 	private static float[] rowY = new float[20];
-	static float[] x = new float[20];
-	static float[] y = new float[20];
-	static float[] yP = new float[20];
 	static float[] wynik = new float[20];
 	static float[] wynikPoSumowaniu = new float[20];
 	private static float[] wspolczynnikWielomianu = new float[20];
@@ -18,16 +15,16 @@ public class Hermite {
 
 		Scanner in = new Scanner(System.in);
 		System.out.println("Witaj uzytkowniku!");
-		System.out.println("Podaja ilosc elementow");
+		System.out.println("Podaja ilosc elementow x: ");
 		iloscElementowX = in.nextInt();
 		// iloscElementowX = 3;
 		// Wypelnianie tablicy x
 		for (int i = 0; i < iloscElementowX; i++) {
-			
+
 			boolean dodanoX = false;
 
 			while (!dodanoX) {
-				
+
 				System.out.println("Podaj wartosc x dla x" + i + ":");
 				boolean jestWTablicy = false;
 				int wprowadzonyX = in.nextInt();
@@ -131,11 +128,12 @@ public class Hermite {
 
 	}
 
-	public static void wylicz(float[] yP) {
+	public static void wylicz(float[] yP, float[] y) {
 		int numer = 1;
 		int licznikPrzejsc = 0;
 		int licznikDlaPrim = 0;
 		float wynik = 0;
+		wspolczynnikWielomianu[0] = y[0];
 		while (licznikPrzejsc != iloscElementowX + 1) {
 
 			for (int i = 0; i < iloscElementowX + parzystaIloscElementow - 1; i++) {
@@ -310,12 +308,14 @@ public class Hermite {
 	}
 
 	public static void main(String[] arg) {
-
+		float[] x = new float[20];
+		float[] y = new float[20];
+		float[] yP = new float[20];
 		pobierzDane(x, y, yP);
 		budujTabele(x, y, yP);
 		pokazKolumnyDoAlgorytmu(rowX, rowY);
-		wspolczynnikWielomianu[0] = y[0];
-		wylicz(yP);
+
+		wylicz(yP, y);
 
 		zbudujWielomian(wspolczynnikWielomianu, rowX);
 		calkuj(wynikPoSumowaniu);
