@@ -23,9 +23,31 @@ public class Hermite {
 		// iloscElementowX = 3;
 		// Wypelnianie tablicy x
 		for (int i = 0; i < iloscElementowX; i++) {
+			
+			boolean dodanoX = false;
 
-			System.out.println("Podaj wartosc x dla x" + i + ":");
-			x[i] = in.nextInt();
+			while (!dodanoX) {
+				
+				System.out.println("Podaj wartosc x dla x" + i + ":");
+				boolean jestWTablicy = false;
+				int wprowadzonyX = in.nextInt();
+
+				for (int j = 0; j < i; j++) {
+
+					if (x[j] == wprowadzonyX) {
+						jestWTablicy = true;
+						break;
+					}
+				}
+
+				if (!jestWTablicy) {
+
+					x[i] = wprowadzonyX;
+					dodanoX = true;
+				} else {
+					System.out.println("Taki x juz zostal wpisany!");
+				}
+			}
 			// x[0] = 0;
 			// x[1] = 1;
 			// x[2] = 2;
@@ -265,28 +287,28 @@ public class Hermite {
 
 	}
 
-	public static void calkuj(float[] wynikPoSumowaniu){
-		
-		for(int i = 0; i<wynikPoSumowaniu.length; i++){
-			
-			float wylicz = (float) (1.0/(i+1));
-			wynikPoSumowaniu[i] = (wynikPoSumowaniu[i] * wylicz);  
-			
+	public static void calkuj(float[] wynikPoSumowaniu) {
+
+		for (int i = 0; i < wynikPoSumowaniu.length; i++) {
+
+			float wylicz = (float) (1.0 / (i + 1));
+			wynikPoSumowaniu[i] = (wynikPoSumowaniu[i] * wylicz);
+
 		}
-		
+
 	}
-	
-	public static void drukujWynik(float[] wynikPoSumowaniu){
-		
+
+	public static void drukujWynik(float[] wynikPoSumowaniu) {
+
 		System.out.println();
 		System.out.println("Wynik po calkowaniu :");
-		for(int i = 0; i<wynikPoSumowaniu.length; i++){
-			
-			System.out.print(wynikPoSumowaniu[i] + "x^" + (i+1) + " + ");
+		for (int i = 0; i < wynikPoSumowaniu.length; i++) {
+
+			System.out.print(wynikPoSumowaniu[i] + "x^" + (i + 1) + " + ");
 		}
-		
+
 	}
-	
+
 	public static void main(String[] arg) {
 
 		pobierzDane(x, y, yP);
