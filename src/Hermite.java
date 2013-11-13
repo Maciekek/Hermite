@@ -184,11 +184,11 @@ public class Hermite {
 				licznik++;
 			}
 		}
-		System.out.println("---------------");
-		for (int i = 0; i < iloscElementowX + 2; i++) {
-
-			System.out.println(rowX[i] + "    " + rowY[i]);
-		}
+		// System.out.println("---------------");
+		// for (int i = 0; i < iloscElementowX + 2; i++) {
+		//
+		// System.out.println(rowX[i] + "    " + rowY[i]);
+		// }
 	}
 
 	private static void zbudujWielomian(float[] wspolczynnikWielomianu,
@@ -299,7 +299,7 @@ public class Hermite {
 	public static void drukujWynik(float[] wynikPoSumowaniu) {
 
 		System.out.println();
-		System.out.println("Wynik po calkowaniu :");
+		System.out.println("\n\n\n\nWynik po calkowaniu :");
 		for (int i = 0; i < wynikPoSumowaniu.length; i++) {
 
 			System.out.print(wynikPoSumowaniu[i] + "x^" + (i + 1) + " + ");
