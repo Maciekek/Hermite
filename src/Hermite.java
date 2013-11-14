@@ -289,7 +289,7 @@ public class Hermite {
 
 		for (int i = 0; i < wynikPoSumowaniu.length; i++) {
 
-			float wylicz = (float) (1.0 / (i + 1));
+			float wylicz = (float) (1.00 / (i + 1));
 			wynikPoSumowaniu[i] = (wynikPoSumowaniu[i] * wylicz);
 
 		}
