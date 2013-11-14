@@ -288,10 +288,11 @@ public class Hermite {
 
 	public static void calkuj(float[] wynikPoSumowaniu) {
 
+	
 		for (int i = 0; i < wynikPoSumowaniu.length; i++) {
 
-			float wylicz = (float) (1.00 / (i + 1));
-			wynikPoSumowaniu[i] = (wynikPoSumowaniu[i] * wylicz);
+			float wylicz = (float) (1.0 / (i + 1));
+			wynikPoSumowaniu[i] = roundOff((wynikPoSumowaniu[i] * wylicz),2);
 
 		}
 
@@ -303,10 +304,20 @@ public class Hermite {
 		System.out.println("\n\n\n\nWynik po calkowaniu :");
 		for (int i = 0; i < wynikPoSumowaniu.length; i++) {
 
-			System.out.print(wynikPoSumowaniu[i] + "x^" + (i + 1) + " + ");
+			if(wynikPoSumowaniu[i] !=0)
+				System.out.print(wynikPoSumowaniu[i] + "x^" + (i + 1) + " + ");
 		}
 
 	}
+	
+	public static float roundOff(float x, int position)
+	{
+        float a = x;
+        double temp = Math.pow(10.0, position);
+        a *= temp;
+        a = Math.round(a);
+        return (a / (float)temp);
+    }
 
 	public static void main(String[] arg) {
 		float[] x = new float[rozmiarTablicy];
