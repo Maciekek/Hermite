@@ -5,11 +5,12 @@ public class Hermite {
 	private static int iloscElementow;
 	private static int iloscElementowX;
 	private static int parzystaIloscElementow;
-	private static float[] rowX = new float[20];
-	private static float[] rowY = new float[20];
-	static float[] wynik = new float[20];
-	static float[] wynikPoSumowaniu = new float[20];
-	private static float[] wspolczynnikWielomianu = new float[20];
+	private static int rozmiarTablicy = 20;
+	private static float[] rowX = new float[rozmiarTablicy];
+	private static float[] rowY = new float[rozmiarTablicy];
+	static float[] wynik = new float[rozmiarTablicy];
+	static float[] wynikPoSumowaniu = new float[rozmiarTablicy];
+	private static float[] wspolczynnikWielomianu = new float[rozmiarTablicy];
 
 	public static void pobierzDane(float[] x, float[] y, float[] yP) {
 
@@ -194,7 +195,7 @@ public class Hermite {
 	private static void zbudujWielomian(float[] wspolczynnikWielomianu,
 			float[] tabX) {
 		int licznikPrzebiegu = 1;
-		float[] Wx = new float[20];
+		float[] Wx = new float[rozmiarTablicy];
 		float[] Vx = new float[2];
 		wynikPoSumowaniu[0] = wspolczynnikWielomianu[0];
 
@@ -308,9 +309,9 @@ public class Hermite {
 	}
 
 	public static void main(String[] arg) {
-		float[] x = new float[20];
-		float[] y = new float[20];
-		float[] yP = new float[20];
+		float[] x = new float[rozmiarTablicy];
+		float[] y = new float[rozmiarTablicy];
+		float[] yP = new float[rozmiarTablicy];
 		pobierzDane(x, y, yP);
 		budujTabele(x, y, yP);
 		pokazKolumnyDoAlgorytmu(rowX, rowY);
